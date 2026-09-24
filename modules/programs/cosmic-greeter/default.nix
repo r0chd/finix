@@ -35,6 +35,8 @@ in
     package = lib.mkOption {
       type = types.package;
       default = pkgs.cosmic-greeter.override {
+        withLogind = config.services.elogind.enable;
+        withSystemd = false;
         udev = udevApi;
         libinput = pkgs.libinput.override (
           lib.optionalAttrs (udevApi != null) {
